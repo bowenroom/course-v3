@@ -66,7 +66,6 @@ from typing import *
 def listify(o):
     if o is None: return []
     if isinstance(o, list): return o
-    if isinstance(o, str): return [o]
     if isinstance(o, Iterable): return list(o)
     return [o]
 
@@ -110,7 +109,7 @@ class Runner():
         self.stop=False
 
     def fit(self, epochs, learn):
-        self.epochs,self.learn,self.loss = epochs,learn,tensor(0.)
+        self.epochs,self.learn = epochs,learn
 
         try:
             for cb in self.cbs: cb.set_runner(self)
